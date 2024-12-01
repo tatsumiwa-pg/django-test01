@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from django.views import View
 
-# Create your views here.
+class SampleView(View):
+    def get(self, request: dict, *args, **kwargs):
+        return render(request, 'app_folder/top.html')
+top = SampleView.as_view()
