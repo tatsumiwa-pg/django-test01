@@ -2,11 +2,21 @@
 {% block contents %}
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mt-5 border-bottom">
-    <h1 class="h2">トップページ</h1>
+    <h1 class="h2">テスト用メモ帳アプリ-トップページ</h1>
 </div>
 
 <div>
-    <h4>ここにコンテンツを記述する</h4>
+    <h4>登録済みメモ一覧</h4>
+    {% for memo in result %}
+        <div>
+            <h5>{{ memo.memo_title }}</h5>
+            <p>{{ memo.contents }}</p>
+            <p>{{ memo.lastupdate_dttm }}</p>
+            <p>{{ memo.lastupdate_dttm }}</p>
+        </div>
+    {% empty %}
+        <p>メモはありません</p>
+    {% endfor %}
 </div>
 
 {% endblock %}
