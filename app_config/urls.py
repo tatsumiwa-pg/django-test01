@@ -15,8 +15,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from . import views
 
+# URL全体設計
 urlpatterns = [
+    # 管理画面にアクセスするURLは以下
     path('admin/', admin.site.urls),
+    # 本アプリにアクセスするURLは以下
+    path('app_folder/', include('app_folder.urls')),
+    # 何もURLを指定しない場合（app_config/views.pyで、自動的に「app_folder」にリダイレクトするよう設定済み）
+    path('', views.index, name='index'),
 ]
+
+# メディアファイル公開用のURL
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
